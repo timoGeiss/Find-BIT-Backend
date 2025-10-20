@@ -1,0 +1,6 @@
+@Bit.FindBit_HostAddress = http://localhost:5216
+
+GET {{Bit.FindBit_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

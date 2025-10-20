@@ -1,0 +1,85 @@
+## Build output
+bin/
+obj/
+out/
+artifacts/
+
+## User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## Visual Studio files
+.vs/
+.vscode/
+
+## IIS Express
+.localhost/
+.vsconfig
+*.vspscc
+*.vssscc
+
+## Logs
+*.log
+*.tlog
+
+## Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+## NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+
+## Secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## Environment files
+.env
+.env.*
+
+## JetBrains Rider
+.idea/
+
+## Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## Publish output
+wwwroot/
+dist/
+publish/
+*.Publish.xml
+
+## Azure functions / WebJobs
+node_modules/
+npm-debug.log
+yarn-error.log
+
+## Docker
+docker-compose.override.yml
+*.pid
+*.tar
+*.img
+
+## Coverage
+coverage/
+*.coverage
+*.coveragexml
+TestResults/
+
+## Others
+Thumbs.db
+Desktop.ini
