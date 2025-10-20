@@ -4,13 +4,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Bit.FindBit.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------- Services ----------
 
 
-// PostgreSQL über Connection String in appsettings.json
+// PostgreSQL ï¿½ber Connection String in appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddControllers();
+
+// Dependency Injection
+builder.Services.AddScoped<ISearchService, SearchService>();
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
