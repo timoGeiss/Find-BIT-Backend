@@ -8,4 +8,5 @@ public class Organisation : BaseEntity
     public ICollection<PhoneNumber> PhoneNumbers { get; set; } = new List<PhoneNumber>();
     public List<string> Emails { get; set; } = [];
     public List<string> RemedyGroups { get; set; } = [];
+    public ICollection<Person> Persons { get; set; } = new List<Person>();
 }
