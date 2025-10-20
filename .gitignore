@@ -1,0 +1,78 @@
+# Build-Ergebnisse
+bin/
+obj/
+out/
+[Aa]pp_Data/
+[Bb]uild/
+[Ll]ogs/
+
+# Benutzer- und IDE-spezifische Dateien
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Paketverwaltung
+# NuGet
+*.nupkg
+*.snupkg
+# Paketcache
+packages/
+# Paketverweise
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET-spezifische Dateien
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+
+# Temporäre Dateien
+*.tmp
+*.temp
+*.bak
+*.log
+*.tlog
+*.swp
+*.swm
+*.orig
+
+# OS-spezifisch
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Linux
+*~
+
+# Veröffentlichte Artefakte
+publish/
+wwwroot/dist/
+wwwroot/lib/
+node_modules/
+bower_components/
+
+# Docker
+*.pid
+docker-compose.override.yml
+.docker/
+
+# Rider/JetBrains
+.idea/
+*.DotSettings.user
+
+# Sonstige
+*.coverage
+*.coveragexml
+*.testresult.xml
+TestResults/
