@@ -9,4 +9,5 @@ public class Person : BaseEntity
     public ICollection<PhoneNumber> PhoneNumbers { get; set; } = new List<PhoneNumber>();
     public List<string> Emails { get; set; } = [];
     public List<string> RemedyGroups { get; set; } = [];
+    public Organisation Organisation { get; set; }
 }
