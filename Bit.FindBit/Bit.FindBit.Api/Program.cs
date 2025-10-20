@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Bit.FindBit.DataAccess.DbAccess;
 using Bit.FindBit.Services;
 
 var builder = WebApplication.CreateBuilder(args);

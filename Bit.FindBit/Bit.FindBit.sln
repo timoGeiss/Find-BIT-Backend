@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit.FindBit.Api", "Bit.Find
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit.FindBit.Core", "Bit.FindBit.Core\Bit.FindBit.Core.csproj", "{D9564323-743B-4868-BA0E-965BDA3B864D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit.FindBit.DataAccess", "Bit.FindBit.DataAccess\Bit.FindBit.DataAccess.csproj", "{9B6C0A53-5011-4F6E-B89A-6E1B7CBCEB18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D9564323-743B-4868-BA0E-965BDA3B864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9564323-743B-4868-BA0E-965BDA3B864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9564323-743B-4868-BA0E-965BDA3B864D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B6C0A53-5011-4F6E-B89A-6E1B7CBCEB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6C0A53-5011-4F6E-B89A-6E1B7CBCEB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6C0A53-5011-4F6E-B89A-6E1B7CBCEB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6C0A53-5011-4F6E-B89A-6E1B7CBCEB18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
