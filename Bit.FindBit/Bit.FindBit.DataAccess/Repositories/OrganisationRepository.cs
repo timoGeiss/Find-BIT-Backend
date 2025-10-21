@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bit.FindBit.DataAccess.Repositories;
 
-public class OrganisationRepository(AppDbContext dbContext) : IOrganisationRepository
+public class OrganisationRepository(AppDbContext dbContext) : IRepository<Organisation>
 {
     public List<Organisation> GetAll(QueryObject queryObject)
     {
@@ -35,5 +35,19 @@ public class OrganisationRepository(AppDbContext dbContext) : IOrganisationRepos
         }
         
         return query.ToList();
+    }
+    public async Task<IEnumerable<Organisation>> GetUpdatedSinceAsync(DateTime? lastSync)
+    {
+        IQueryable<Organisation> query = dbContext.Organisations
+            .Include(o => o.Persons)
+            .ThenInclude(p => p.PhoneNumbers)
+            .Include(o => o.PhoneNumbers);
+
+        if (lastSync.HasValue)
+            query = query.Where(o => o.UpdatedAt > lastSync.Value 
+                                     || o.Persons.Any(p => p.UpdatedAt > lastSync.Value)
+                                     || o.PhoneNumbers.Any(pn => pn.UpdatedAt > lastSync.Value));
+
+        return await query.ToListAsync();
     }
 }

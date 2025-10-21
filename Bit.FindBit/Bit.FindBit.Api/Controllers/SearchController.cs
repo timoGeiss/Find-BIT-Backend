@@ -12,11 +12,11 @@ public class SearchController(ISearchService searchService) : Controller
 {
     [HttpGet]
     public IActionResult GetAll(
-        string query,
-        bool picket,
-        string type,
-        int offset,
-        int limit)
+        string? query = null,
+        bool? picket = null,
+        string? type = null,
+        int? offset = null,
+        int? limit = null)
     {
         try
         {

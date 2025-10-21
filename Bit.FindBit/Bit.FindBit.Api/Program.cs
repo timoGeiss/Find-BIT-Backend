@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Bit.FindBit.Core.Entities;
 using Bit.FindBit.DataAccess.DbAccess;
 using Bit.FindBit.DataAccess.Repositories;
 using Bit.FindBit.Services;
@@ -11,8 +12,8 @@ using Bit.FindBit.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------- Services ----------
-builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IRepository<Person>, PersonRepository>();
+builder.Services.AddScoped<IRepository<Organisation>, OrganisationRepository>();
 builder.Services.AddScoped<ISearchService, SearchService>();
 
 // PostgreSQL �ber Connection String in appsettings.json

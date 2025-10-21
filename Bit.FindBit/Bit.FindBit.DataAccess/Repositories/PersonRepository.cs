@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bit.FindBit.DataAccess.Repositories;
 
-public class PersonRepository(AppDbContext appDbContext) : IPersonRepository
+public class PersonRepository(AppDbContext dbContext) : IRepository<Person>
 {
     public List<Person> GetAll(QueryObject queryObject)
     {
-        var query = appDbContext.Persons
+        var query = dbContext.Persons
             .Include(p => p.PhoneNumbers)
             .AsQueryable();
         
@@ -21,15 +21,13 @@ public class PersonRepository(AppDbContext appDbContext) : IPersonRepository
                 || p.LastName.Contains(queryObject.Query));
         }
 
-        if (queryObject.Picket is true)
+        query = queryObject.Picket switch
         {
-            query = query.Where(p => p.PhoneNumbers.Count(n => n.Type == PhoneNumberType.Picket) > 0);
-        }
-        if (queryObject.Picket is false)
-        {
-            query = query.Where(p => p.PhoneNumbers.Count(n => n.Type == PhoneNumberType.Picket) == 0);
-        }
-
+            true => query.Where(p => p.PhoneNumbers.Count(n => n.Type == PhoneNumberType.Picket) > 0),
+            false => query.Where(p => p.PhoneNumbers.Count(n => n.Type == PhoneNumberType.Picket) == 0),
+            _ => query
+        };
+        
         if (queryObject.Offset is >= 0)
         {
             query = query.Skip(queryObject.Offset.Value);
@@ -41,5 +39,17 @@ public class PersonRepository(AppDbContext appDbContext) : IPersonRepository
         }
         
         return query.ToList();
+    }
+    public async Task<IEnumerable<Person>> GetUpdatedSinceAsync(DateTime? lastSync)
+    {
+        IQueryable<Person> query = dbContext.Persons
+            .Include(p => p.PhoneNumbers)
+            .Include(p => p.Organisation);
+
+        if (lastSync.HasValue)
+            query = query.Where(p => p.UpdatedAt > lastSync.Value
+                                     || p.PhoneNumbers.Any(pn => pn.UpdatedAt > lastSync.Value));
+
+        return await query.ToListAsync();
     }
 }

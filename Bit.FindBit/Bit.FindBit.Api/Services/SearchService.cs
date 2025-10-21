@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Services;
 
 namespace Bit.FindBit.Services;
 
-public class SearchService(IPersonRepository personRepository, IOrganisationRepository organisationRepository) : ISearchService
+public class SearchService(IRepository<Person> personRepository, IRepository<Organisation> organisationRepository) : ISearchService
 {
     public GeneralResponse GetAll(QueryObject queryObject)
     {
