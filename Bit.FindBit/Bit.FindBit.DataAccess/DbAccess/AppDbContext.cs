@@ -13,8 +13,7 @@ public class AppDbContext : DbContext
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<PhoneNumber>()
-            .Property(p => p.Type)
-            .HasConversion<string>(); 
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 }

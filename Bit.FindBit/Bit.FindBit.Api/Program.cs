@@ -5,24 +5,27 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Bit.FindBit.DataAccess.DbAccess;
+using Bit.FindBit.DataAccess.Repositories;
 using Bit.FindBit.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------- Services ----------
-
+builder.Services.AddScoped<IOrganisationRepository, OrganisationRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<ISearchService, SearchService>();
 
 // PostgreSQL �ber Connection String in appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.UseNpgsql(connectionString);
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        npgsqlOptions.MigrationsAssembly("Bit.FindBit.DataAccess");
+    });
 });
 
 builder.Services.AddControllers();
-
-// Dependency Injection
-builder.Services.AddScoped<ISearchService, SearchService>();
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -54,8 +57,6 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// ---------- Middleware ----------
 
 if (app.Environment.IsDevelopment())
 {
